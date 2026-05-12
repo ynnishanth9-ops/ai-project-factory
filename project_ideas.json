@@ -1,0 +1,38 @@
+[
+  {
+    "repo_name": "ai-resume-optimizer-agent",
+    "title": "AI Resume Optimizer Agent",
+    "description": "A LangChain-based AI agent that analyzes resumes against job descriptions and generates targeted improvement suggestions.",
+    "tech_stack": ["Python", "LangChain", "OpenAI API"],
+    "features": [
+      "Resume text analysis",
+      "Job description keyword extraction",
+      "Skill gap detection",
+      "Improvement report generation"
+    ]
+  },
+  {
+    "repo_name": "ai-research-assistant-rag",
+    "title": "AI Research Assistant RAG",
+    "description": "A retrieval-augmented generation assistant that helps summarize documents and answer questions using retrieved context.",
+    "tech_stack": ["Python", "LangChain", "FAISS", "OpenAI API"],
+    "features": [
+      "Document loading",
+      "Text chunking",
+      "Vector search",
+      "Context-aware answer generation"
+    ]
+  },
+  {
+    "repo_name": "ai-email-task-agent",
+    "title": "AI Email Task Agent",
+    "description": "A LangGraph-style automation agent that classifies emails, extracts tasks, and generates follow-up actions.",
+    "tech_stack": ["Python", "LangGraph", "LangChain"],
+    "features": [
+      "Email classification",
+      "Task extraction",
+      "Priority detection",
+      "Follow-up response generation"
+    ]
+  }
+]
