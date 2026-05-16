@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project Factory generated output
+# Keep this commented if you want generated projects visible in GitHub
+# generated_projects/
+
+# macOS
+.DS_Store
