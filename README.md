@@ -27,6 +27,14 @@ This project helps automate the creation of AI-focused portfolio projects, espec
 - Push generated project files to GitHub
 - Run automatically using GitHub Actions
 
+## How to Run
+
+Clone the repository:
+
+```bash
+git clone https://github.com/ynnishanth9-ops/ai-project-factory.git
+cd ai-project-factory
+
 ## Project Workflow
 
 ```text
