@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from github_client import create_github_repo
+from github_client import create_github_repo, push_project_to_github
 
 
 OUTPUT_DIR = Path("generated_projects")
@@ -101,12 +101,18 @@ def main():
 
     for project in projects:
         create_project(project)
+
         create_github_repo(
             repo_name=project["repo_name"],
             description=project["description"]
         )
 
-    print("All AI projects generated and GitHub repositories created successfully.")
+        push_project_to_github(
+            project_folder=OUTPUT_DIR / project["repo_name"],
+            repo_name=project["repo_name"]
+        )
+
+    print("All AI projects generated, repositories created, and files pushed successfully.")
 
 
 if __name__ == "__main__":
