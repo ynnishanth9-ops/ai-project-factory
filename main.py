@@ -97,9 +97,11 @@ def create_project(project):
 
 def main():
     projects = load_project_ideas()
-    first_project = projects[0]
-    create_project(first_project)
-    print("Done.")
+
+    for project in projects:
+        create_project(project)
+
+    print("All AI projects generated successfully.")
 
 
 if __name__ == "__main__":
