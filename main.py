@@ -66,9 +66,27 @@ def generate_app(project):
 """
 
 
+def process_input(user_input):
+    """Process sample input for this AI automation project."""
+    result = {{
+        "input": user_input,
+        "summary": "This is a generated starter workflow.",
+        "next_step": "Replace this logic with LangChain, LangGraph, or API-based automation."
+    }}
+
+    return result
+
+
 def main():
-    print("Starting {title}...")
-    print("This is a starter AI automation project.")
+    sample_input = "Sample input for {title}"
+
+    result = process_input(sample_input)
+
+    print("{title}")
+    print("-" * len("{title}"))
+    print("Input:", result["input"])
+    print("Summary:", result["summary"])
+    print("Next Step:", result["next_step"])
 
 
 if __name__ == "__main__":
