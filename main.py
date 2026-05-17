@@ -1,19 +1,31 @@
+import argparse
 import json
 from pathlib import Path
+
 from github_client import create_github_repo, push_project_to_github
 
 
 OUTPUT_DIR = Path("generated_projects")
-IDEAS_FILE = Path("project_ideas.json")
+DEFAULT_IDEAS_FILE = Path("project_ideas.json")
 
 
-def load_project_ideas():
-    """Load AI project ideas from JSON file."""
-    if not IDEAS_FILE.exists():
-        raise FileNotFoundError("project_ideas.json not found.")
+def load_project_ideas(file_path):
+    """Load project ideas from a JSON file."""
+    path = Path(file_path)
 
-    with open(IDEAS_FILE, "r", encoding="utf-8") as file:
-        return json.load(file)
+    if not path.exists():
+        raise FileNotFoundError(f"Project ideas file not found: {file_path}")
+
+    with open(path, "r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    if isinstance(data, dict):
+        return [data]
+
+    if isinstance(data, list):
+        return data
+
+    raise ValueError("Input JSON must be either a project object or a list of projects.")
 
 
 def generate_readme(project):
@@ -94,6 +106,27 @@ if __name__ == "__main__":
 '''
 
 
+def generate_requirements(project):
+    """Generate requirements.txt based on project tech stack."""
+    tech_stack = [tech.lower() for tech in project["tech_stack"]]
+
+    requirements = ["python-dotenv"]
+
+    if "langchain" in tech_stack:
+        requirements.append("langchain")
+
+    if "langgraph" in tech_stack:
+        requirements.append("langgraph")
+
+    if "openai api" in tech_stack:
+        requirements.append("openai")
+
+    if "faiss" in tech_stack:
+        requirements.append("faiss-cpu")
+
+    return "\n".join(requirements) + "\n"
+
+
 def create_project(project):
     """Create project folder and starter files."""
     project_folder = OUTPUT_DIR / project["repo_name"]
@@ -102,7 +135,7 @@ def create_project(project):
     files = {
         "README.md": generate_readme(project),
         "app.py": generate_app(project),
-        "requirements.txt": "python-dotenv\nlangchain\nopenai\n",
+        "requirements.txt": generate_requirements(project),
         ".env.example": "OPENAI_API_KEY=your_api_key_here\n",
         ".gitignore": ".env\n__pycache__/\n*.pyc\n",
     }
@@ -112,13 +145,15 @@ def create_project(project):
         file_path.write_text(content, encoding="utf-8")
 
     print(f"Created project: {project_folder}")
+    return project_folder
 
 
-def main():
-    projects = load_project_ideas()
+def run_factory(input_file):
+    """Generate projects, create GitHub repos, and push files."""
+    projects = load_project_ideas(input_file)
 
     for project in projects:
-        create_project(project)
+        project_folder = create_project(project)
 
         create_github_repo(
             repo_name=project["repo_name"],
@@ -126,11 +161,23 @@ def main():
         )
 
         push_project_to_github(
-            project_folder=OUTPUT_DIR / project["repo_name"],
+            project_folder=project_folder,
             repo_name=project["repo_name"]
         )
 
-    print("All AI projects generated, repositories created, and files pushed successfully.")
+    print("All projects generated, repositories created, and files pushed successfully.")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="AI Project Factory")
+    parser.add_argument(
+        "--input",
+        default=str(DEFAULT_IDEAS_FILE),
+        help="Path to project idea JSON file"
+    )
+
+    args = parser.parse_args()
+    run_factory(args.input)
 
 
 if __name__ == "__main__":

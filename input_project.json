@@ -1,0 +1,12 @@
+{
+  "repo_name": "ai-meeting-notes-agent",
+  "title": "AI Meeting Notes Agent",
+  "description": "An AI automation tool that summarizes meeting notes, extracts action items, and generates follow-up tasks.",
+  "tech_stack": ["Python", "LangChain", "OpenAI API"],
+  "features": [
+    "Meeting transcript summarization",
+    "Action item extraction",
+    "Follow-up task generation",
+    "Markdown report output"
+  ]
+}
