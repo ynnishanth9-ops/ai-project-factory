@@ -1,49 +1,28 @@
 # AI Project Factory
 
-AI Project Factory is a Python automation system that generates AI automation project repositories from structured project ideas.
+AI Project Factory is an end-to-end AI automation engine that converts rough project ideas into structured GitHub repositories.
 
-The goal of this project is to automatically create clean, recruiter-ready GitHub repositories with professional README files, starter Python code, LangChain/LangGraph templates, and GitHub Actions support.
+The system uses n8n, OpenAI, FastAPI, Python, and the GitHub API to generate project files, create repositories, and push generated code automatically.
 
-## Purpose
+## Project Overview
 
-This project helps automate the creation of AI-focused portfolio projects, especially around:
+This project was built as part of my learning journey in LangChain, AI automation, and workflow engineering.
 
-- AI automation agents
-- LangChain workflows
-- LangGraph workflows
-- Retrieval-Augmented Generation
-- API-based automation
-- Python productivity tools
+Instead of manually creating project repositories, this automation takes a rough idea, converts it into structured project metadata, generates a project folder, creates a GitHub repository, and pushes the generated files automatically.
 
-## Planned Features
-
-- Read AI project ideas from a JSON file
-- Generate a project folder automatically
-- Create a professional README.md
-- Generate starter Python/LangChain code
-- Add requirements.txt and .env.example
-- Add sample input and output files
-- Create a GitHub repository automatically
-- Push generated project files to GitHub
-- Run automatically using GitHub Actions
-
-## How to Run
-
-Clone the repository:
-
-```bash
-git clone https://github.com/ynnishanth9-ops/ai-project-factory.git
-cd ai-project-factory
-
-## Project Workflow
+## Automation Architecture
 
 ```text
-Project idea list
+Rough Project Idea
         ↓
-Python automation script
+n8n Workflow
         ↓
-Generate project files
+OpenAI Structured JSON Generation
         ↓
-Create GitHub repository
+FastAPI Controller
         ↓
-Push project to GitHub
+Python Project Factory Engine
+        ↓
+GitHub API
+        ↓
+Generated GitHub Repository
