@@ -6,9 +6,11 @@ The system uses n8n, OpenAI, FastAPI, Python, and the GitHub API to generate pro
 
 ## Project Overview
 
-This project was built as part of my learning journey in LangChain, AI automation, and workflow engineering.
+This project was built as part of my learning journey in AI automation, workflow engineering, and practical AI project development.
 
 Instead of manually creating project repositories, this automation takes a rough idea, converts it into structured project metadata, generates a project folder, creates a GitHub repository, and pushes the generated files automatically.
+
+This project does not directly run LangChain inside the factory engine yet. Instead, it generates AI automation project structures that are ready to be extended with LangChain, LangGraph, RAG, or API-based workflows.
 
 ## Automation Architecture
 
@@ -249,6 +251,7 @@ The project currently supports:
 - Add Google Sheets or Notion logging
 - Add website/RSS project idea collection
 - Add licence and attribution checks
+- Add actual LangChain and LangGraph starter templates inside generated projects
 
 ## Repository
 
